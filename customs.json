@@ -1,0 +1,23 @@
+{
+    "elements": {},
+    "attributes": {
+        "th:classappend": {},
+        "th:if": {},
+        "th:text": {},
+        "th:include": {
+            "context": "div"
+        },
+        "th:src": {
+            "context": "script"
+        },
+        "th:action": {
+            "context": "form"
+        },
+        "th:replace": {},
+        "th:href": {
+            "context": "link"
+        },
+        "th:fragment": {},
+        "th:field": {}
+    }
+}
