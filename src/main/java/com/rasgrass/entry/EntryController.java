@@ -1,12 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.rasgrass.entry;
 
-import com.rasgrass.account.Account;
-import com.rasgrass.account.AccountRepository;
 import java.security.Principal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,18 +17,18 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @Controller
 public class EntryController {
 
-    private EntryRepository entryRepository;
+	private final EntryRepository entryRepository;
 
-    @Autowired
-    public EntryController(EntryRepository entryRepository) {
-        this.entryRepository = entryRepository;
-    }
+	@Autowired
+	public EntryController(EntryRepository entryRepository) {
+		this.entryRepository = entryRepository;
+	}
 
-    @RequestMapping(value = "entry/current", method = RequestMethod.GET)
-    @ResponseStatus(value = HttpStatus.OK)
-    @ResponseBody
-    public Entry entry(Principal principal) {
-        Assert.notNull(principal);
-        return null;
-    }
+	@RequestMapping(value = "entry/current", method = RequestMethod.GET)
+	@ResponseStatus(value = HttpStatus.OK)
+	@ResponseBody
+	public Entry entry(Principal principal) {
+		Assert.notNull(principal);
+		return null;
+	}
 }

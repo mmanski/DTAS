@@ -1,7 +1,6 @@
 package com.rasgrass.config;
 
 import com.rasgrass.Application;
-import com.rasgrass.entry.Entry;
 import java.util.Properties;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,47 +20,47 @@ import org.springframework.transaction.annotation.TransactionManagementConfigure
 @EnableJpaRepositories(basePackageClasses = {Application.class})
 class JpaConfig implements TransactionManagementConfigurer {
 
-    @Value("${dataSource.driverClassName}")
-    private String driver;
-    @Value("${dataSource.url}")
-    private String url;
-    @Value("${dataSource.username}")
-    private String username;
-    @Value("${dataSource.password}")
-    private String password;
-    @Value("${hibernate.dialect}")
-    private String dialect;
-    @Value("${hibernate.hbm2ddl.auto}")
-    private String hbm2ddlAuto;
-        
-    @Bean
-    public DataSource configureDataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(driver);
-        dataSource.setUrl(url);
-        dataSource.setUsername(username);
-        dataSource.setPassword(password);
-        return dataSource;
-    }
+	@Value("${dataSource.driverClassName}")
+	private String driver;
+	@Value("${dataSource.url}")
+	private String url;
+	@Value("${dataSource.username}")
+	private String username;
+	@Value("${dataSource.password}")
+	private String password;
+	@Value("${hibernate.dialect}")
+	private String dialect;
+	@Value("${hibernate.hbm2ddl.auto}")
+	private String hbm2ddlAuto;
 
-    @Bean
-    public LocalContainerEntityManagerFactoryBean configureEntityManagerFactory() {
-        LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
-        entityManagerFactoryBean.setDataSource(configureDataSource());
-        entityManagerFactoryBean.setPackagesToScan("com.rasgrass");
-        entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+	@Bean
+	public DataSource configureDataSource() {
+		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+		dataSource.setDriverClassName(driver);
+		dataSource.setUrl(url);
+		dataSource.setUsername(username);
+		dataSource.setPassword(password);
+		return dataSource;
+	}
 
-        Properties jpaProperties = new Properties();
-        jpaProperties.put(org.hibernate.cfg.Environment.DIALECT, dialect);
-        jpaProperties.put(org.hibernate.cfg.Environment.HBM2DDL_AUTO, hbm2ddlAuto);
-        entityManagerFactoryBean.setJpaProperties(jpaProperties);
+	@Bean
+	public LocalContainerEntityManagerFactoryBean configureEntityManagerFactory() {
+		LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
+		entityManagerFactoryBean.setDataSource(configureDataSource());
+		entityManagerFactoryBean.setPackagesToScan("com.rasgrass");
+		entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
 
-        return entityManagerFactoryBean;
-    }
+		Properties jpaProperties = new Properties();
+		jpaProperties.put(org.hibernate.cfg.Environment.DIALECT, dialect);
+		jpaProperties.put(org.hibernate.cfg.Environment.HBM2DDL_AUTO, hbm2ddlAuto);
+		entityManagerFactoryBean.setJpaProperties(jpaProperties);
 
-    @Bean
-    @Override
-    public PlatformTransactionManager annotationDrivenTransactionManager() {
-        return new JpaTransactionManager();
-    }
+		return entityManagerFactoryBean;
+	}
+
+	@Bean
+	@Override
+	public PlatformTransactionManager annotationDrivenTransactionManager() {
+		return new JpaTransactionManager();
+	}
 }

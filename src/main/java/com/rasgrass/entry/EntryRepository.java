@@ -14,12 +14,12 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(isolation = Isolation.READ_COMMITTED)
 public class EntryRepository {
 
-    @PersistenceContext
-    private EntityManager entityManager;
+	@PersistenceContext
+	private EntityManager entityManager;
 
-    @Transactional
-    public Entry save(Entry entry) {
-        entityManager.persist(entry);
-        return entry;
-    }
+	@Transactional
+	public Entry save(Entry entry) {
+		entityManager.persist(entry);
+		return entry;
+	}
 }

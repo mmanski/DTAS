@@ -1,9 +1,10 @@
 package com.rasgrass.config;
 
-import org.springframework.context.annotation.Configuration;
 import javax.sql.DataSource;
+import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public interface DataSourceConfig {
-    DataSource dataSource();
+
+	DataSource dataSource();
 }

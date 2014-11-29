@@ -1,19 +1,23 @@
 package com.rasgrass.support.web;
 
 /**
- * A message to be displayed in web context. Depending on the type, different style will be applied.
+ * A message to be displayed in web context. Depending on the type, different
+ * style will be applied.
  */
 public class Message {
-    /**
-     * Name of the flash attribute.
-     */
+
+	/**
+	 * Name of the flash attribute.
+	 */
 	public static final String MESSAGE_ATTRIBUTE = "message";
 
-    /**
-     * The type of the message to be displayed. The type is used to show message in a different style.
-     */
+	/**
+	 * The type of the message to be displayed. The type is used to show message
+	 * in a different style.
+	 */
 	public static enum Type {
-        DANGER, WARNING, INFO, SUCCESS;
+
+		DANGER, WARNING, INFO, SUCCESS;
 	}
 
 	private final String message;
@@ -25,7 +29,7 @@ public class Message {
 		this.type = type;
 		this.args = null;
 	}
-	
+
 	public Message(String message, Type type, Object... args) {
 		this.message = message;
 		this.type = type;

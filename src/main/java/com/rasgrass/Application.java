@@ -1,3 +1,4 @@
 package com.rasgrass;
 
-public interface Application {}
+public interface Application {
+}

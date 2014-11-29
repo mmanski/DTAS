@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  *
@@ -14,76 +14,75 @@ import javax.persistence.Table;
  */
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "entries")
+@Document(collection = "entries")
 public class Entry implements Serializable {
 
-    @Id
-    @GeneratedValue
-    private String ID;
+	@Id
+	@GeneratedValue
+	private Long ID;
 
-    private String PARENT_ID;
+	private Long PARENT_ID;
 
-    private String entryText;
+	private String entryText;
 
-    private int entryVotes;
+	private int entryVotes;
 
-    @OneToOne(targetEntity = Account.class)
-    private Account author;
-    
-    //@OneToOne(targetEntity = Account.class, optional = true)
-    private String embeddedItem;
+	@OneToOne(targetEntity = Account.class)
+	private Account author;
 
-    public Entry() {
-    }
+	private String embeddedItem;
 
-    public Entry(final String parent, final String text, final Account author, final String embedded) {
-        this.author = author;
-        this.embeddedItem = embedded;
-        this.entryText = text;
-        this.PARENT_ID = parent;
-    }
+	public Entry() {
+	}
 
-    public Entry(final String text, final Account author, final String embedded) {
-        this.author = author;
-        this.embeddedItem = embedded;
-        this.entryText = text;
-        this.PARENT_ID = null;
-    }
+	public Entry(final Long parent, final String text, final Account author, final String embedded) {
+		this.author = author;
+		this.embeddedItem = embedded;
+		this.entryText = text;
+		this.PARENT_ID = parent;
+	}
 
-    public String getID() {
-        return ID;
-    }
+	public Entry(final String text, final Account author, final String embedded) {
+		this.author = author;
+		this.embeddedItem = embedded;
+		this.entryText = text;
+		this.PARENT_ID = null;
+	}
 
-    public String getPARENT_ID() {
-        return PARENT_ID;
-    }
+	public Long getID() {
+		return ID;
+	}
 
-    public String getEntryText() {
-        return entryText;
-    }
+	public Long getPARENT_ID() {
+		return PARENT_ID;
+	}
 
-    public int getEntryVotes() {
-        return entryVotes;
-    }
+	public String getEntryText() {
+		return entryText;
+	}
 
-    public Account getAuthor() {
-        return author;
-    }
+	public int getEntryVotes() {
+		return entryVotes;
+	}
 
-    public Object getEmbeddedItem() {
-        return embeddedItem;
-    }
+	public Account getAuthor() {
+		return author;
+	}
 
-    public void setEntryText(String entryText) {
-        this.entryText = entryText;
-    }
+	public Object getEmbeddedItem() {
+		return embeddedItem;
+	}
 
-    public void setEntryVotes(int entryVotes) {
-        this.entryVotes = entryVotes;
-    }
+	public void setEntryText(String entryText) {
+		this.entryText = entryText;
+	}
 
-    public void setEmbeddedItem(String embeddedItem) {
-        this.embeddedItem = embeddedItem;
-    }
+	public void setEntryVotes(int entryVotes) {
+		this.entryVotes = entryVotes;
+	}
+
+	public void setEmbeddedItem(String embeddedItem) {
+		this.embeddedItem = embeddedItem;
+	}
 
 }
