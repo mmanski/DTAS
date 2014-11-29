@@ -3,6 +3,9 @@ package com.rasgrass.account;
 import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoException;
+import static com.rasgrass.config.MongoConfig.MONGO_DB_NAME;
+import static com.rasgrass.config.MongoConfig.MONGO_HOST;
+import static com.rasgrass.config.MongoConfig.MONGO_PORT;
 import java.net.UnknownHostException;
 import javax.inject.Inject;
 import org.springframework.data.authentication.UserCredentials;
@@ -17,10 +20,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class AccountRepository implements CrudRepository<Account, String> {
 
-	private static final int MONGO_PORT = 27017;
-	private static final String MONGO_HOST = "localhost";
-	private static final String MONGO_DB_NAME = "test";
-
+	
 	@Inject
 	private PasswordEncoder passwordEncoder;
 	private final MongoClient mongoClient;

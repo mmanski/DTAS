@@ -14,7 +14,12 @@ import org.springframework.data.mongodb.core.convert.MongoTypeMapper;
 import org.springframework.data.mongodb.core.mapping.MongoMappingContext;
 
 @Configuration
-class MongoConfig {
+public class MongoConfig {
+	
+	private static final int MONGO_PORT = 27017;
+	private static final String MONGO_HOST = "localhost";
+	private static final String MONGO_DB_NAME = "test";
+
 
 	@Bean
 	public MongoDbFactory mongoDbFactory() throws UnknownHostException {
