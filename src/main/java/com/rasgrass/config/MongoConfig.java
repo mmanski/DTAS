@@ -1,6 +1,5 @@
 package com.rasgrass.config;
 
-
 import com.mongodb.Mongo;
 import java.net.UnknownHostException;
 import org.springframework.context.annotation.Bean;
@@ -15,11 +14,10 @@ import org.springframework.data.mongodb.core.mapping.MongoMappingContext;
 
 @Configuration
 public class MongoConfig {
-	
-	private static final int MONGO_PORT = 27017;
-	private static final String MONGO_HOST = "localhost";
-	private static final String MONGO_DB_NAME = "test";
 
+	public static final int MONGO_PORT = 27017;
+	public static final String MONGO_HOST = "localhost";
+	public static final String MONGO_DB_NAME = "test";
 
 	@Bean
 	public MongoDbFactory mongoDbFactory() throws UnknownHostException {

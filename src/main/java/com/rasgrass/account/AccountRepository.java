@@ -20,7 +20,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class AccountRepository implements CrudRepository<Account, String> {
 
-	
 	@Inject
 	private PasswordEncoder passwordEncoder;
 	private final MongoClient mongoClient;

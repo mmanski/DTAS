@@ -1,17 +1,17 @@
 package com.rasgrass.account;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Matchers.*;
-import static org.mockito.Mockito.*;
-
 import java.util.Collection;
-
+import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
+import static org.mockito.Matchers.any;
 import org.mockito.Mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -51,7 +51,7 @@ public class UserServiceTest {
 	@Test
 	public void shouldReturnUserDetails() {
 		// arrange
-		Account demoUser = new Account("user@example.com", "demo", "ROLE_USER","user");
+		Account demoUser = new Account("user@example.com", "demo", "ROLE_USER", "user");
 		when(accountRepositoryMock.findByEmail("user@example.com")).thenReturn(demoUser);
 
 		// act
@@ -60,13 +60,13 @@ public class UserServiceTest {
 		// assert
 		assertThat(demoUser.getEmail()).isEqualTo(userDetails.getUsername());
 		assertThat(demoUser.getPassword()).isEqualTo(userDetails.getPassword());
-        assertThat(hasAuthority(userDetails, demoUser.getRole()));
+		assertThat(hasAuthority(userDetails, demoUser.getRole()));
 	}
 
 	private boolean hasAuthority(UserDetails userDetails, String role) {
 		Collection<? extends GrantedAuthority> authorities = userDetails.getAuthorities();
-		for(GrantedAuthority authority : authorities) {
-			if(authority.getAuthority().equals(role)) {
+		for (GrantedAuthority authority : authorities) {
+			if (authority.getAuthority().equals(role)) {
 				return true;
 			}
 		}
