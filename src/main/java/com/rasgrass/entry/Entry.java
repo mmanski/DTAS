@@ -1,11 +1,10 @@
 package com.rasgrass.entry;
 
-import com.rasgrass.account.Account;
 import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import lombok.Data;
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
@@ -14,75 +13,41 @@ import org.springframework.data.mongodb.core.mapping.Document;
  */
 @SuppressWarnings("serial")
 @Entity
+@Data
 @Document(collection = "entries")
 public class Entry implements Serializable {
 
 	@Id
-	@GeneratedValue
-	private Long ID;
+	private ObjectId ID = new ObjectId();
 
-	private Long PARENT_ID;
+	private String PARENT_ID;
+
+	private String title;
 
 	private String entryText;
 
 	private int entryVotes;
 
-	@OneToOne(targetEntity = Account.class)
-	private Account author;
+	//@OneToOne(targetEntity = Account.class)
+	private String author;
 
 	private String embeddedItem;
 
 	public Entry() {
 	}
 
-	public Entry(final Long parent, final String text, final Account author, final String embedded) {
+	public Entry(final String parent, final String text, final String embedded, final String author) {
 		this.author = author;
 		this.embeddedItem = embedded;
 		this.entryText = text;
 		this.PARENT_ID = parent;
 	}
 
-	public Entry(final String text, final Account author, final String embedded) {
-		this.author = author;
-		this.embeddedItem = embedded;
+	public Entry(final String text, final String title,final String author) {
+		this.title = title;
 		this.entryText = text;
 		this.PARENT_ID = null;
-	}
-
-	public Long getID() {
-		return ID;
-	}
-
-	public Long getPARENT_ID() {
-		return PARENT_ID;
-	}
-
-	public String getEntryText() {
-		return entryText;
-	}
-
-	public int getEntryVotes() {
-		return entryVotes;
-	}
-
-	public Account getAuthor() {
-		return author;
-	}
-
-	public Object getEmbeddedItem() {
-		return embeddedItem;
-	}
-
-	public void setEntryText(String entryText) {
-		this.entryText = entryText;
-	}
-
-	public void setEntryVotes(int entryVotes) {
-		this.entryVotes = entryVotes;
-	}
-
-	public void setEmbeddedItem(String embeddedItem) {
-		this.embeddedItem = embeddedItem;
+		this.author = author;
 	}
 
 }

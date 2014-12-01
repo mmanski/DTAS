@@ -3,6 +3,7 @@
     "attributes": {
         "th:classappend": {},
         "th:if": {},
+		"th:each": {},
         "th:text": {},
         "th:include": {
             "context": "div"

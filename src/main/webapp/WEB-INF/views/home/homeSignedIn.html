@@ -19,6 +19,11 @@
 			<p>
 				Welcome to the Spring MVC Quickstart application!
 			</p>
+			<table>
+				<tr th:each="entry : ${entries}">
+					<td th:text="${entry.embeddedItem}">lel</td>
+				</tr>
+			</table>
 		</div>
 	</body>
 </html>

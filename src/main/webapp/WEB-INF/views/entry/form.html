@@ -9,13 +9,15 @@
 		<script src="../../../resources/js/bootstrap.min.js" th:src="@{/resources/js/bootstrap.min.js}"></script>
 	</head>
 	<body>
-		<form class="form-narrow form-horizontal" method="post" th:action="@{/entry}" th:object="${entryForm}">
+		<div class="col-md-3">
+		</div>
+		<form class="form-horizontal col-md-5" method="post" th:action="@{/entry}" th:object="${entryForm}">
 			<!-- /* Show general error message when form contains errors */ -->
 			<th:block th:if="${#fields.hasErrors('${entryForm.*}')}">
 				<div th:replace="fragments/alert :: alert (type='danger', message='Form contains errors. Please try again.')">Alert</div>
 			</th:block>
 			<fieldset>
-				<legend>Create a new post</legend>
+				<legend style="text-align: center">Create a new post</legend>
 				<div class="form-group" th:classappend="${#fields.hasErrors('title')}? 'has-error'">
 					<label for="title" class="col-lg-2 control-label">Title</label>
 					<div class="col-lg-10">
@@ -26,7 +28,7 @@
 				<div class="form-group" th:classappend="${#fields.hasErrors('text')}? 'has-error'">
 					<label for="text" class="col-lg-2 control-label">Your post</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="text" placeholder="Your post" th:field="*{text}" />
+						<textarea class="form-control" id="text" placeholder="Your post" th:field="*{text}" rows="5" cols="40"/>
 						<span class="help-block" th:if="${#fields.hasErrors('text')}" th:errors="*{text}">Incorrect post/comment</span>
 					</div>
 				</div>
@@ -37,5 +39,7 @@
 				</div>
 			</fieldset> 
 		</form>
+		<div class="col-md-3">
+		</div>
 	</body>
 </html>
