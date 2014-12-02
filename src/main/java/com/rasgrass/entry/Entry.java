@@ -43,7 +43,7 @@ public class Entry implements Serializable {
 		this.PARENT_ID = parent;
 	}
 
-	public Entry(final String text, final String title,final String author) {
+	public Entry(final String text, final String title, final String author) {
 		this.title = title;
 		this.entryText = text;
 		this.PARENT_ID = null;

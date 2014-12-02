@@ -19,11 +19,23 @@
 			<p>
 				Welcome to the Spring MVC Quickstart application!
 			</p>
-			<table>
-				<tr th:each="entry : ${entries}">
-					<td th:text="${entry.embeddedItem}">lel</td>
-				</tr>
-			</table>
+
+			<div class="col-lg-2"></div>
+			<div class="col-lg-7">
+				<div class='col-md-4'></div>
+				<button type="button" class="btn btn-primary">Create your comment</button>
+				
+				<br>
+				</br>
+				<div th:each="entry : ${entries}" class="panel panel-default"> 
+					<div class="panel-body">
+						<p th:text="${entry.entryText}"> </p>
+						<small th:text="'by ' + ${entry.author}"></small>
+					</div>
+					 <button type="button" class="btn btn-primary btn-sm">Reply</button>
+				</div>
+			</div>
 		</div>
+
 	</body>
 </html>
